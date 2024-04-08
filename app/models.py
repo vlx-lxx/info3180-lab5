@@ -1,4 +1,5 @@
 # Add any model classes for Flask-SQLAlchemy here
+from datetime import datetime
 from . import db
 
 class Movie(db.Model):
@@ -9,7 +10,7 @@ class Movie(db.Model):
     title = db.Column(db.String(80))
     description = db.Column(db.Text)
     poster = db.Column(db.String)
-    created_at = db.Column(db.DateTime(), default=datetime.utcnow)
+    created_at = db.Column(db.DateTime(), default=datetime.now)
 
     def __init__(self, title, description, poster, created_at):
         self.title = title
