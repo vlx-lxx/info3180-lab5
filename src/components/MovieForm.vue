@@ -43,7 +43,7 @@
   function saveMovie() {
     let movieForm = document.getElementById('movieForm');
     let form_data = new FormData(movieForm);
-    fetch("/api/v1/movies", {
+    fetch("/api/v1/movies", { timeout: 10000 },{
       method: 'POST',
       body: form_data,
       headers: {

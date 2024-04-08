@@ -12,6 +12,9 @@ export default defineConfig({
     }
   },
   server: {
+    resolve: {
+      // your resolve configuration here
+    },
     proxy: {
       '^/api*': {
         target: 'http://localhost:5173/', 

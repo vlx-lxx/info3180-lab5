@@ -51,10 +51,26 @@ def movies():
     else:
         return jsonify({'errors': form_errors(form)}), 400
     
+@app.route('/api/v1/movies')
+def get_movies():
+    movies = []  # Fetch movies from your database
+    # Format movies data
+    movies_data = [{"id": movie.id, "title": movie.title, "description": movie.description, "poster": f"/api/v1/posters/{movie.poster_filename}"} for movie in movies]
+    return jsonify({"movies": movies_data})
+
+from flask import send_from_directory
+
+@app.route('/api/v1/posters/<path:filename>')
+def get_poster(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+    
 
 @app.route('/api/v1/csrf-token', methods=['GET'])
 def get_csrf():
   return jsonify({'csrf_token': generate_csrf()})
+
+
 
 
 ###
